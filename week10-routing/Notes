@@ -1,0 +1,61 @@
+# Routing
+
+Install : npm install react-router-dom
+
+need to import in the file
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+
+make sure to use first letter as capital in the name of component that we are calling when certain route being called.
+
+To make true SPA we have to make sure that we are not calling <a> tag for each page section
+<a> tag fetch full page
+
+instead of that we have to use <Link> component under <BrowserRouter> and give path in to="";
+like this <Link to="/neet/class11"> Class 11</Link>
+
+Usecase1: we want user to move to the landing page after 10 second if user hit the route class 12.
+
+Sol :
+we have to leverage the useNavigate() hook from the react-router-dom.
+
+function Class12() {
+const navigate = useNavigate();
+
+function redirectpage() {
+navigate("/");
+}
+
+return (
+
+<div>
+class 12 content
+<button onClick={redirectpage}>go to landing page</button>
+</div>
+);
+}
+
+usecase2: if we want to redirect user to a common page for all the random routes that are not ideal
+
+<Route path="\*" element={<ErrorPage />} />
+
+usecase3 : if we need to fix certain section and make some section dynamic (content based on routes) then what to do
+for eg : header [ dynamic ] footer
+
+        we have to use <Outlet> from react router dom
+
+        -> wrap all the routes to one main route and provide path as "\"
+        -> call the layout component where we defined the structure of the page
+        -> for dynamic content make sure to call <Outlet/> component
+        function Layout() {
+          return (
+            <div>
+            <Header />
+            <Outlet />
+            <Footer />
+            </div>
+          );
+        }
+
+
+UseRef
+reference to a value, such that when we change the value, the component DOES NOT re-render.
