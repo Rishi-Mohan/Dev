@@ -1,11 +1,15 @@
+import { useRef } from "react";
+
 function App() {
+  const inputRef = useRef();
+
   function focusOnInput() {
-    document.getElementById("name").focus();
+    inputRef.current.focus();
   }
   return (
     <div>
       Sign Up
-      <input id="name" type={"text"}></input>
+      <input ref={inputRef} type={"text"}></input>
       <input type={"password"}></input>
       <button onClick={focusOnInput}>Submit</button>
     </div>
@@ -24,5 +28,12 @@ But if we go by the code then directly based on the ID we can manipulate the DOM
 window.setTimeout(function(){
   document.getElementById("name").focus()
 }, 3000);
+
+
+it is not a good way to use getElementById() while using react, Better way is to use ref() hooks
+to refer the dom element
+
+ref attribute tells us to which dom element need to be taken care 
+and whatever the process we want to apply in the dom element we define using .current method.
 
 */
