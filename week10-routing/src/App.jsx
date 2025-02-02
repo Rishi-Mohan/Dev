@@ -4,18 +4,29 @@ import { createContext, useState, useContext } from "react";
 
 const BulbContext = createContext();
 
-function App() {
+// yaha pa humne ek wrapper banaya hai jo ki sare ugly logic ko contain karega 
+// and hum usko use direct karenga
+
+function BulbProvider({ children }) {
   const [isBulbOn, setIsBulbOn] = useState(true);
   return (
+    <BulbContext.Provider
+      value={{
+        isBulbOn: isBulbOn,
+        setIsBulbOn: setIsBulbOn,
+      }}
+    >
+      {children}
+    </BulbContext.Provider>
+  );
+}
+
+function App() {
+  return (
     <div>
-      <BulbContext.Provider
-        value={{
-          isBulbOn: isBulbOn,
-          setIsBulbOn: setIsBulbOn,
-        }}
-      >
+      <BulbProvider>
         <LightBulb />
-      </BulbContext.Provider>
+      </BulbProvider>
     </div>
   );
 }
