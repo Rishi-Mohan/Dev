@@ -1,34 +1,42 @@
 // toggle the bulb
 
-import { useState } from "react";
+import { createContext, useState, useContext } from "react";
+
+const BulbContext = createContext();
 
 function App() {
+  const [isBulbOn, setIsBulbOn] = useState(true);
   return (
     <div>
-      <LightBulb />
+      <BulbContext.Provider
+        value={{
+          isBulbOn: isBulbOn,
+          setIsBulbOn: setIsBulbOn,
+        }}
+      >
+        <LightBulb />
+      </BulbContext.Provider>
     </div>
   );
 }
 
 const LightBulb = () => {
-  const [isBulbOn, setIsBulbOn] = useState(true);
   return (
     <div>
-      <BulbState isBulbOn={isBulbOn} />
-      <ToggleBulbState setIsBulbOn={setIsBulbOn} />
+      <BulbState />
+      <ToggleBulbState />
     </div>
   );
 };
 
-// here we need isBulbOn
-const BulbState = ({ isBulbOn }) => {
+const BulbState = () => {
+  const { isBulbOn } = useContext(BulbContext);
   return <div>{isBulbOn ? "Bulb is ON" : "Bulb is OFF"}</div>;
 };
 
-// here we need setIsBulbOn
-const ToggleBulbState = ({ setIsBulbOn }) => {
+const ToggleBulbState = () => {
+  const { setIsBulbOn } = useContext(BulbContext);
   const checkStatus = () => {
-    // how this line of code is working
     setIsBulbOn((currentState) => !currentState);
   };
 
@@ -42,12 +50,17 @@ const ToggleBulbState = ({ setIsBulbOn }) => {
 export default App;
 
 /*
-when we need to pass variable to child component separately then in that case we need to rolling up the
-state, means instead of declaring the state variable under the child component we can declare that 
-variable in the LCA and from there with the help of props we pass the variable to the child.
+Context API
+used to manage a state across the application
+
+jargon:
+
+a) Context : it serves as a container for the data you want to share
+b) Provider: Any container that is the child of this provider can the access the context.
+c) Consumer: It allows us to access the context value.
 
 
-
+useContext Returns a object so we can destructure it on the fly 
 
 
 
