@@ -5,4 +5,4 @@ Step1 : take the dummy data in json format and show the data in the page
 Optional chaining solve the problem of undefined of length, research about this.
 
 
-step2 : how many products should be in the single page
+step2 : how many products should be in the single page and implement logic of slicing based on start and ending of the product index;
