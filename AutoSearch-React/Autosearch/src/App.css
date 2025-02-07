@@ -1,0 +1,35 @@
+.search-input {
+  width: 50%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.result-container {
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 10px;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.result {
+  display: block;
+  padding: 2px;
+}
+
+.result:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
