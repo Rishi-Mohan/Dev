@@ -1,4 +1,4 @@
-const Profile = ({ data, setData }) => {
+const Profile = ({ data, setData, errors }) => {
   const { name, email, age } = data;
   const handleUpdate = (e, item) => {
     setData((prevState) => ({
@@ -17,6 +17,7 @@ const Profile = ({ data, setData }) => {
           onChange={(e) => handleUpdate(e, "name")}
         />
       </div>
+      {errors.name && <span className="error">{errors.name}</span>}
       <div>
         <label>Email : </label>
         <input
@@ -25,6 +26,7 @@ const Profile = ({ data, setData }) => {
           onChange={(e) => handleUpdate(e, "email")}
         />
       </div>
+      {errors.email && <span className="error">{errors.email}</span>}
       <div>
         <label>Age : </label>
         <input
@@ -33,6 +35,7 @@ const Profile = ({ data, setData }) => {
           onChange={(e) => handleUpdate(e, "age")}
         />
       </div>
+      {errors.age && <span className="error">{errors.age}</span>}
     </div>
   );
 };

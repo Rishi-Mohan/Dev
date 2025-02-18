@@ -1,4 +1,4 @@
-const Interest = ({ data, setData }) => {
+const Interest = ({ data, setData, errors }) => {
   const { interest } = data;
   const handleUpdate = (e) => {
     setData((prevState) => ({
@@ -54,6 +54,7 @@ const Interest = ({ data, setData }) => {
           Movies
         </label>
       </div>
+      {errors.interest && <span className="error">{errors.interest}</span>}
     </div>
   );
 };
